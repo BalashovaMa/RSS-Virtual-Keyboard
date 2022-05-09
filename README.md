@@ -1,1 +1,1 @@
-https://BalashovaMa.github.io/RSS-Virtual-Keyboard/
+https://BalashovaMa.github.io/RSS-Virtual-Keyboard
