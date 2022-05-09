@@ -1,0 +1,108 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    max-width: 1280px;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: #DAE0F2;
+    align-items: center;
+    text-align: center;
+}
+.output-area {
+    display: block;
+    margin: 0 auto;
+    width: 70%;
+    height: 30%;
+    margin-top: 50px;
+    border: 2px solid #111344;
+    background-color: #f9cff2;
+    color: #111344;
+    font-size: 20px;
+}
+.title {
+    margin-top: 50px;
+    color: #52154e;
+}
+.keyboard {
+    display: flex;
+    width: 900px;
+    margin: 0 auto;
+    align-items: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+.keyboard-key-num {
+    width: 50px;
+    height: 50px;
+}
+.keyboard-key-triple {
+    width: 150px;
+    height: 50px;
+}
+.keyboard-key-double {
+    width: 100px;
+    height: 50px;
+}
+.keyboard-key-space {
+    width: 350px;
+    height: 50px;
+}
+.red:hover {
+    background-color: aqua;
+}
+.down {
+    background-color: #dae0f2;
+}
+button {
+    color: #382b22;
+    background: #efe9e7;
+    border: 2px solid #b18597;
+    border-radius: 0.75em;
+    transition: transform 0.15s;
+    transform-style: preserve-3d;
+}
+button::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f9cff2;
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+    transform: translate3d(0, 0.75em, -2em);
+ }
+ .down::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f9cff2;
+    border-radius: inherit;
+    box-shadow: 0 0 0 2px #b18597, 0 0.625em 0 0 #ffe3e2;
+    transform: translate3d(0, 0.75em, -2em);
+ }
+  button:hover {
+    background: #dae0F2;
+    transform: translate(0, 0.25em);
+  }
+  button:hover::before {
+    box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+    transform: translate3d(0, 0.5em, -1em);
+  }
+  .down:hover {
+    background: #dae0F2;
+    transform: translate(0, 0.25em);
+  }
+  .down:hover::before {
+    box-shadow: 0 0 0 2px #b18597, 0 0.5em 0 0 #ffe3e2;
+    transform: translate3d(0, 0.5em, -1em);
+  }
