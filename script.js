@@ -55,7 +55,7 @@ const keysEng = [{
     down: "]"
 }, {
     top: "|",
-    down: "'\'"
+    down: "/"
 },
     "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", {
     top: ":",
@@ -74,18 +74,65 @@ const keysEng = [{
     top: "?",
     down: "/"
 }, "shift",
-{
-    top: "ru",
-    down: "en"
-}, "sound", "space", "back", "next"
+    "ru", "en", "space", "back", "next"
 ]
-const keysRu = [
-    "ё"]
+/*const keysRu = [
+    "ё", {
+        top: "!",
+        down: "1"
+    }, {
+        top: '"',
+        down: "2"
+    }, {
+        top: "№",
+        down: "3"
+    }, {
+        top: ";",
+        down: "4"
+    }, {
+        top: "%",
+        down: "5"
+    }, {
+        top: ":",
+        down: "6"
+    }, {
+        top: "?",
+        down: "7"
+    }, {
+        top: "*",
+        down: "8"
+    }, {
+        top: "(",
+        down: "9"
+    }, {
+        top: ")",
+        down: "0"
+    }, {
+        top: "_",
+        down: "-"
+    }, {
+        top: "+",
+        down: "="
+    }, "backspace",
+    "tab", "й", "ц", "у", "к", "е", "н", "г", "ш", "щ", "з", "х", "ъ", "/",
+    "caps", "ф", "ы", "в", "а", "п", "р", "о", "л", "д", "ж", "э", "enter",
+    "shift", "я", "ч", "с", "м", "и", "т", "ь", "б", "ю", {
+        top: ",",
+        down: "."
+    }, {
+        top: "",
+        down: "shift"
+    },
+    {
+        top: "en",
+        down: "ru"
+    }, "sound", "space", "back", "next"
+]*/
 const keysCode = ["Backquote", "Digit1", "Digit2", "Digit3", "Digit4", "Digit5", "Digit6", "Digit7",
     "Digit8", "Digit9", "Digit0", "Minus", "Equal", "Backspace", "Tab", "KeyQ", "KeyW", "KeyE", "KeyR", "KeyT",
     "KeyY", "KeyU", "KeyI", "KeyO", "KeyP", "BracketLeft", "BracketRight", "Backslash", "CapsLock", "KeyA", "KeyS",
     "KeyD", "KeyF", "KeyG", "KeyH", "KeyJ", "KeyK", "KeyL", "Semicolon", "Quote", "Enter", "ShiftLeft", "KeyZ",
-    "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ShiftRight", "", "", "", "Space", "ArrowLeft", "ArrowRight"
+    "KeyX", "KeyC", "KeyV", "KeyB", "KeyN", "KeyM", "Comma", "Period", "Slash", "ShiftRight", "ControlLeft", "AltLeft", "Space", "ArrowLeft", "ArrowRight"
 ]
 let keyboard = document.createElement('div');
 keyboard.classList.add('keyboard');
@@ -127,21 +174,33 @@ const btnKeys = keyboard.querySelectorAll('.keyboard_key');
 for (let i = 0; i < btnKeys.length; i++) {
     btnKeys[i].setAttribute('data-code', keysCode[i])
 }
-let cursorPos = 0;
-const enterText = () => {
-    outputArea.focus();
-}
 keyboard.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('keyboard_key')) {
-        enterText
+        outputArea.focus();
         outputArea.setRangeText(evt.target.textContent, 10, 10)
-        evt.target.classList.toggle('red')
+
     }
 })
-document.addEventListener("DOMContentLoaded", enterText);
-document.addEventListener('keydown', function(event) {
+document.addEventListener("DOMContentLoaded", outputArea.focus());
+document.addEventListener('keydown', function (event) {
     if (keysCode.includes(event.code)) {
-      console.log(event.code)
-      
+        console.log(event.code)
+
     }
-  });
+});
+const keyDown = (btn) => {
+    btnKeys.forEach(elem => {
+        if (elem.getAttribute('data-code') === btn.code) {
+            elem.classList.add('down')
+        }
+    })
+}
+const keyUp = (btn) => {
+    btnKeys.forEach(elem => {
+        if (elem.getAttribute('data-code') === btn.code) {
+            elem.classList.remove('down')
+        }
+    })
+}
+outputArea.addEventListener('keydown', keyDown);
+outputArea.addEventListener('keyup', keyUp);
